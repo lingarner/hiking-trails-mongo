@@ -1,34 +1,32 @@
 const {MongoClient} = require('mongodb');
 require('dotenv').config();
+const uri = process.env.uri;
 
+async function getAllTrails() {
 
-async function main() {
-    const uri = process.env.uri;
-    const client = new MongoClient(uri);
-	 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
- 
-        // Make the appropriate DB calls
-       const data =  await listDatabases(client);
+  const client = new MongoClient(uri);
+
+  
+  try {
+    await client.connect();
+
+    const database = client.db('hiking');
+    const collection = database.collection('trails');
+
+    const cursor = collection.find();
+
+    const data = [];
+    await cursor.forEach(document => {
+        data.push(document);
+    });
+    console.log(data)
     
-       return data
+    return data
 
- 
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
 
-async function listDatabases(client){
-    databasesList = await client.db().admin().listDatabases();
- 
-    console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
-
-module.exports = {main}
+module.exports = {getAllTrails}
