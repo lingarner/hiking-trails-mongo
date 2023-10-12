@@ -1,7 +1,9 @@
+const model = require('../model/index')
 const baseController = {}
 
-baseController.hi =  function(req, res) {
-    res.send('Lindsay Garner')
+baseController.hi =  async function(req, res) {
+    const listDatabases = await model.main();
+    res.send(listDatabases)
 }
 
 

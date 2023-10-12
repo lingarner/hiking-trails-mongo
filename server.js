@@ -1,7 +1,7 @@
 // const router = require('./routes/index.js')
 const express = require('express')
 const app = express();
-const {MongoClient} = require('mongodb');
+
 
 app.use('/', require('./routes/index.js') )
 
