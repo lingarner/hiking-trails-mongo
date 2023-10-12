@@ -1,7 +1,9 @@
 // const router = require('./routes/index.js')
 const express = require('express')
 const app = express();
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json())
 
 app.use('/', require('./routes/index.js') )
 
