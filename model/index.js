@@ -1,7 +1,8 @@
-const {MongoClient} = require('mongodb');
+const {MongoClient,  ObjectId} = require('mongodb');
 require('dotenv').config();
 const uri = process.env.uri;
 
+// returns all trails in database
 async function getAllTrails() {
 
   const client = new MongoClient(uri);
@@ -28,6 +29,29 @@ async function getAllTrails() {
   }
 }
 
+// returns the trail associated with the id passed in
+async function getOneTrail(id){
+    const client = new MongoClient(uri);
+    console.log(id)
+    
+    try {
+      await client.connect();
+      
+      const database = client.db('hiking');
+      const collection = database.collection('trails');
+      const query = { _id: new ObjectId(id) };
+      const contact = await collection.findOne(query);
+      
+      return contact
+      
+    } catch (error) {
+      console.error('Error:', error);
+    } finally{
+      await client.close()
+    }
+  }
+
+// allows user to add a new trail
 async function insertTrail(req) {
     console.log('in insertTrail');
     console.log(req);
@@ -64,4 +88,4 @@ async function insertTrail(req) {
   }
 }
 
-module.exports = {getAllTrails, insertTrail}
+module.exports = {getAllTrails, getOneTrail, insertTrail}

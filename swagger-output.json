@@ -22,12 +22,78 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "contact",
+            "in": "body",
+            "description": "Insert a new Contact",
+            "required": true,
+            "format": "json",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "New Trail Name"
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Location"
+                },
+                "distance": {
+                  "type": "string",
+                  "example": "Distance"
+                },
+                "elevationGain": {
+                  "type": "string",
+                  "example": "Net Elevation Gain"
+                },
+                "elevationLoss": {
+                  "type": "string",
+                  "example": "Net Elevation Loss"
+                },
+                "lastHiked": {
+                  "type": "string",
+                  "example": "Date Last Hiked"
+                },
+                "comments": {
+                  "type": "string",
+                  "example": "Comments about the hike."
+                }
+              },
+              "required": [
+                "name",
+                "location",
+                "distance",
+                "elevationGain",
+                "elevationLoss",
+                "lastHiked",
+                "comments"
+              ]
+            }
+          }
+        ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/{_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
