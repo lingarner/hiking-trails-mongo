@@ -60,9 +60,9 @@ baseController.updateTrail = async function(req, res){
     type: 'string',
     format: 'hex'
   }
-  #swagger.parameters['contact'] = {
+  #swagger.parameters['trail'] = {
     in: 'body',
-    description: 'Updated contact data',
+    description: 'Updated trail data',
     required: true,
     type: 'json',
     schema: {
@@ -76,8 +76,7 @@ baseController.updateTrail = async function(req, res){
     }
   }
 */
-
-    
+   
     // allows user to insert new trail using res.body
     let trailID = req.params._id;
     let updatedTrail = await model.updateTrail(trailID, req)
