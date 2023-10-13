@@ -52,30 +52,28 @@ baseController.deleteTrail = async function(req, res){
 }
 
 baseController.updateTrail = async function(req, res){
-   /* 
-  #swagger.parameters['_id'] = {
-    in: 'path',
-    description: 'Select and update a specific contact',
-    required: true,
-    type: 'string',
-    format: 'hex'
-  }
-  #swagger.parameters['trail'] = {
-    in: 'body',
-    description: 'Updated trail data',
-    required: true,
-    type: 'json',
-    schema: {
-        $name: 'New Trail Name',
-        $location: 'Location',
-        $distance: 'Distance',
-        $elevationGain: 'Net Elevation Gain',
-        $elevationLoss: 'Net Elevation Loss',
-        $lastHiked: 'Date Last Hiked',
-        $comments: 'Comments about the hike.
+    /* #swagger.parameters['_id'] = {
+        in: 'path',
+        description: 'Select and update a specific contact',
+        required: true,
+        type: 'string',
+        format: 'hex'
     }
-  }
-*/
+    #swagger.parameters['trail'] = {
+        in: 'body',
+        description: 'Updated trail data',
+        required: true,
+        type: 'json',
+        schema: {
+            $name: 'New Trail Name',
+            $location: 'Location',
+            $distance: 'Distance',
+            $elevationGain: 'Net Elevation Gain',
+            $elevationLoss: 'Net Elevation Loss',
+            $lastHiked: 'Date Last Hiked',
+            $comments: 'Comments about the hike.'
+        }
+    }*/    
    
     // allows user to insert new trail using res.body
     let trailID = req.params._id;

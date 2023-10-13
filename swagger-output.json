@@ -123,11 +123,62 @@
             "type": "string",
             "description": "Select and update a specific contact",
             "format": "hex"
+          },
+          {
+            "name": "trail",
+            "in": "body",
+            "description": "Updated trail data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "New Trail Name"
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Location"
+                },
+                "distance": {
+                  "type": "string",
+                  "example": "Distance"
+                },
+                "elevationGain": {
+                  "type": "string",
+                  "example": "Net Elevation Gain"
+                },
+                "elevationLoss": {
+                  "type": "string",
+                  "example": "Net Elevation Loss"
+                },
+                "lastHiked": {
+                  "type": "string",
+                  "example": "Date Last Hiked"
+                },
+                "comments": {
+                  "type": "string",
+                  "example": "Comments about the hike."
+                }
+              },
+              "required": [
+                "name",
+                "location",
+                "distance",
+                "elevationGain",
+                "elevationLoss",
+                "lastHiked",
+                "comments"
+              ]
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
