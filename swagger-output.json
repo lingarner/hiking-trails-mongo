@@ -120,7 +120,9 @@
             "name": "_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Select and update a specific contact",
+            "format": "hex"
           }
         ],
         "responses": {
