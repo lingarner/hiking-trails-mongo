@@ -44,7 +44,7 @@ baseController.addTrail = async function(req, res){
 }
 
 baseController.deleteTrail = async function(res, req){
-    const trailID = req.params._id
+    const trailID = req.params._id;
     // deletes specific trail by ID
     const deleteResult = await model.removeTrail(trailID);
     res.send(deleteResult)
