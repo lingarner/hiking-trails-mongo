@@ -89,6 +89,7 @@
     }
 
     async function removeTrail(id){
+    console.log(id)
     const client = new MongoClient(uri);
 
     try {
@@ -101,7 +102,7 @@
     
         const contact = await collection.deleteOne(filter);
         
-        return contact.deletedCount
+        return contact
     
         
     } catch (error) {
@@ -110,6 +111,35 @@
         await client.close()
     }
 
-    }
+}
 
-    module.exports = {getAllTrails, getOneTrail, insertTrail, removeTrail}
+async function updateTrail(id, req){
+    const client = new MongoClient(uri);
+    
+    try {
+        await client.connect();
+        
+        const database = client.db('hiking');
+        const collection = database.collection('trails');
+    
+        const filter = { _id: new ObjectId(id) };
+        const update = {
+            name: req.body.name,
+            location: req.body.location,
+            distance: req.body.distance,
+            elevationGain: req.body.elevationGain,
+            elevationLoss: req.body.elevationLoss,
+            lastHiked: req.body.lastHiked,
+            comments: req.body.comments
+        
+        }
+        const contact = await collection.replaceOne(filter, update);
+        return contact.modifiedCount
+        
+    } catch (error) {
+        console.error('Error:', error);
+    } finally{
+        await client.close()
+    }
+}
+module.exports = {getAllTrails, getOneTrail, insertTrail, removeTrail,  updateTrail}

@@ -16,6 +16,9 @@ router.get('/:_id', controller.getOneTrail)
 router.post('/', controller.addTrail);
 
 // route to delete a trail by an id
-router.delete("/deleteTrail/:_id", controller.deleteTrail)
+router.delete('/:_id', controller.deleteTrail)
+
+// route to update db
+router.put('/:_id', controller.updateTrail)
 
 module.exports = router

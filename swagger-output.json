@@ -24,9 +24,9 @@
         "description": "",
         "parameters": [
           {
-            "name": "contact",
+            "name": "trail",
             "in": "body",
-            "description": "Insert a new Contact",
+            "description": "Insert a new Trail",
             "required": true,
             "format": "json",
             "schema": {
@@ -96,10 +96,24 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/deleteTrail/{_id}": {
+      },
       "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
         "description": "",
         "parameters": [
           {
