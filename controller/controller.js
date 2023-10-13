@@ -35,7 +35,7 @@ baseController.addTrail = async function(req, res){
       } */
     
     // allows user to insert new trail using res.body
-    let newTrail = await model.updateTrail(req);
+    let newTrail = await model.insertTrail(req);
     if (newTrail) {
         res.status(201).send(newTrail.insertedId);
       } else {
