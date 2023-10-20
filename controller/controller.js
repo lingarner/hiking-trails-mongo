@@ -105,13 +105,17 @@ baseController.updateTrail = async function(req, res){
     }*/    
    
     // allows user to insert new trail using res.body
-    let trailID = req.params._id;
-    let updatedTrail = await model.updateTrail(trailID, req)
-    if (updatedTrail) {
-        res.status(204).send(updatedTrail.insertedId);
-      } else {
-        res.status(500).json(res.error || 'Some error occurred while creating the trail.');
-      }
+    try{
+      let trailID = req.params._id;
+      let updatedTrail = await model.updateTrail(trailID, req)
+      if (updatedTrail) {
+          res.status(204).send(updatedTrail.insertedId);
+        } else {
+          res.status(500).json(res.error || 'Some error occurred while updating the trail.');
+        }
+    } catch (error){
+      res.status(500).json(error.message || 'Some error occurred while updating trail.')
+    }
 }
 
 
