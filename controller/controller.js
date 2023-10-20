@@ -71,7 +71,7 @@ baseController.deleteTrail = async function(req, res){
     // deletes specific trail by ID
     const deleteResult = await model.removeTrail(trailID);
     if(deleteResult){
-      res.send(deleteResult)
+      res.status(200).send(deleteResult)
     } else{
       throw new Error('Some error occurred while deleting trail.')
     }
