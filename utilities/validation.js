@@ -59,20 +59,25 @@ validate.newHikeRules = () => {
  * validation for POST route
  * ***************************** */
 validate.checkDataInsert = async (req, res, next) => {
+    console.log('in insert check')
     let errors = []
     errors = validationResult(req)
-    if (!errors.isEmpty()) {
-      return res.status(500).json({errors: errors.array() })
-    } else if(errors.isEmpty()){
-        return res.status(201)
-    } 
+    try{
+        if (errors.isEmpty()) {
+            return res.status(201).json({message: "Trail added", data: req.params._id})
+        }
+    } catch (error){
+        return res.status(500).json({errors: errors.array() })
+
+    }
     next()
   }
 
 
 
+
 /* ******************************
- * validation for PUT route
+ * validation for any route with ID's
  * ***************************** */
 validate.checkData = async (req, res, next) => {
     console.log('in check update')

@@ -2,9 +2,17 @@ const model = require('../model/index')
 const baseController = {}
 
 baseController.getTrails =  async function(req, res) {
+  try{
     // gets all the trails and info from db
     const listTrails = await model.getAllTrails();
-    res.send(listTrails)
+    if(listTrails){
+      res.status(200).send(listTrails)
+    }else{
+      throw new Error("Trails Not Found")
+    }
+  } catch (error) {
+      res.status(500)
+  }
 }
 
 baseController.getOneTrail = async function(req, res){
