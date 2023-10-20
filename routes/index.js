@@ -11,7 +11,10 @@ router.use("/", swagger)
 router.get('/', controller.getTrails)
 
 // route to get one trail by id
-router.get('/:_id', controller.getOneTrail)
+router.get('/:_id',
+utilities.checkID(),
+utilities.checkDataUpdate,
+controller.getOneTrail)
 
 // route to add a new trail to the db
 router.post('/', 
@@ -20,11 +23,16 @@ utilities.checkDataInsert,
 controller.addTrail);
 
 // route to delete a trail by an id
-router.delete('/:_id', controller.deleteTrail)
+router.delete('/:_id',
+utilities.checkID(),
+utilities.checkDataUpdate,
+controller.deleteTrail)
 
 // route to update db
 router.put('/:_id', 
+// checks PUT data and ID
 utilities.newHikeRules(),
+utilities.checkID(),
 utilities.checkDataUpdate,
 controller.updateTrail)
 

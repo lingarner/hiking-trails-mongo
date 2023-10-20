@@ -1,5 +1,5 @@
-const { resolveSoa } = require("dns")
-const { body, validationResult } = require("express-validator")
+const { error } = require("console")
+const {param, body, validationResult } = require("express-validator")
 const validate = {}
 
 
@@ -44,6 +44,17 @@ validate.newHikeRules = () => {
     ]
   }
 
+// check if the id in params is
+  validate.checkID = () => {
+    return [
+        param('_id')
+            .isString()
+            .isLength({min: 12})
+            .withMessage("Error with ID")
+    ];
+  };
+  
+
 /* ******************************
  * validation for POST route
  * ***************************** */
@@ -59,16 +70,17 @@ validate.checkDataInsert = async (req, res, next) => {
   }
 
 
+
 /* ******************************
  * validation for PUT route
  * ***************************** */
-validate.checkDataInsert = async (req, res, next) => {
+validate.checkDataUpdate = async (req, res, next) => {
+    console.log('in check update')
     let errors = []
     errors = validationResult(req)
+    console.log(errors)
     if (!errors.isEmpty()) {
-      return res.status(500).json({errors: errors.array() })
-    } else if(errors.isEmpty()){
-        return res.status(204)
+      return res.status(400).json({errors: errors.array() })
     } 
     next()
   }
