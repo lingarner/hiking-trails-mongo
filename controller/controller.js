@@ -8,10 +8,18 @@ baseController.getTrails =  async function(req, res) {
 }
 
 baseController.getOneTrail = async function(req, res){
+  try{
     let trailID = req.params._id;
     // retrives all info for specified id 
     const one = await model.getOneTrail(trailID);
-    res.send(one)
+    if(one){
+      return res.status(201).json({message: "Successfully retrieved one trail", data: one});
+    } else{
+      throw new Error("Could not get Trail with that ID")
+    }
+  } catch (error){
+    res.status(500).json(error.message || 'Some error occurred while retrieving the trail.');
+  }
 }
 
 baseController.addTrail = async function(req, res){
@@ -35,20 +43,33 @@ baseController.addTrail = async function(req, res){
       } */
     
     // allows user to insert new trail using res.body
-    let newTrail = await model.insertTrail(req);
-    if (newTrail) {
+    try {
+      let newTrail = await model.insertTrail(req);
+      if (newTrail) {
         res.status(201).send(newTrail.insertedId);
       } else {
-        res.status(500).json(res.error || 'Some error occurred while creating the trail.');
+        throw new Error('Some error occurred while creating the trail.');
       }
+    } catch (error) {
+      res.status(500).json(error.message || 'Some error occurred while creating the trail.');
+    }
+    
 }
 
 // broken
 baseController.deleteTrail = async function(req, res){
+  try{
     const trailID = req.params._id;
     // deletes specific trail by ID
     const deleteResult = await model.removeTrail(trailID);
-    res.send(deleteResult)
+    if(deleteResult){
+      res.send(deleteResult)
+    } else{
+      throw new Error('Some error occurred while deleting trail.')
+    }
+  } catch (error){
+    res.status(500).json(error.message || 'Some error occurred while deleting trail.')
+  }
 }
 
 baseController.updateTrail = async function(req, res){

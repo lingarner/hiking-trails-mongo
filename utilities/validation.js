@@ -74,7 +74,7 @@ validate.checkDataInsert = async (req, res, next) => {
 /* ******************************
  * validation for PUT route
  * ***************************** */
-validate.checkDataUpdate = async (req, res, next) => {
+validate.checkData = async (req, res, next) => {
     console.log('in check update')
     let errors = []
     errors = validationResult(req)
