@@ -79,7 +79,7 @@ baseController.updateTrail = async function(req, res){
     let trailID = req.params._id;
     let updatedTrail = await model.updateTrail(trailID, req)
     if (updatedTrail) {
-        res.status(201).send(updatedTrail.insertedId);
+        res.status(204).send(updatedTrail.insertedId);
       } else {
         res.status(500).json(res.error || 'Some error occurred while creating the trail.');
       }
