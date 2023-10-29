@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const swagger = require('./swagger.js')
 const utilities = require('../utilities/validation.js')
+const auth = require('../utilities/auth0.js')
 const controller = require('../controller/controller.js');
 
 // route for the swagger ui
@@ -9,6 +10,12 @@ router.use("/", swagger)
 
 // route to get all trails
 router.get('/', controller.getTrails)
+
+// route to test auth0
+router.get('/private', 
+auth.chckJWT, 
+controller.testPrivate
+)
 
 // route to get one trail by id
 router.get('/:_id',

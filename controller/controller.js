@@ -1,4 +1,5 @@
 const model = require('../model/index')
+const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 const baseController = {}
 
 baseController.getTrails =  async function(req, res) {
@@ -116,6 +117,11 @@ baseController.updateTrail = async function(req, res){
     } catch (error){
       res.status(500).json(error.message || 'Some error occurred while updating trail.')
     }
+}
+baseController.testPrivate = function(req, res) {
+  res.send({
+    message: 'Hello from a private endpoint! You need to be authenticated to see this.'
+  });
 }
 
 
