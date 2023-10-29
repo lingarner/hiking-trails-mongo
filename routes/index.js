@@ -13,7 +13,7 @@ router.get('/', controller.getTrails)
 
 // route to test auth0
 router.get('/private', 
-auth.chckJWT, 
+auth.checkJWT, 
 controller.testPrivate
 )
 

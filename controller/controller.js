@@ -119,9 +119,7 @@ baseController.updateTrail = async function(req, res){
     }
 }
 baseController.testPrivate = function(req, res) {
-  res.send({
-    message: 'Hello from a private endpoint! You need to be authenticated to see this.'
-  });
+  res.send('Private');
 }
 
 
