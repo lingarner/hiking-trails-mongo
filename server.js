@@ -14,7 +14,7 @@ const config = {
   authRequired: false,
   auth0Logout: true,
   secret: process.env.secret,
-  baseURL: 'https://web-341.onrender.com',
+  baseURL: 'http://localhost:5050',
   clientID: 'GVYqWNWpErgH8aiyGUtV8FF5jGxezcLR',
   issuerBaseURL: 'https://dev-4ha050c0hqua8uiq.us.auth0.com'
 };
