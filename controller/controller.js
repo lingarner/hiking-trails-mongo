@@ -1,5 +1,4 @@
 const model = require('../model/index')
-const { auth, requiredScopes } = require('express-oauth2-jwt-bearer');
 const baseController = {}
 
 baseController.getTrails =  async function(req, res) {
