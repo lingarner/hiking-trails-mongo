@@ -4,7 +4,6 @@ const utilities = require('../utilities/validation.js')
 const controller = require('../controller/controller.js');
 
 
-
 // go to hiking routes
 // route to get all trails
 router.get('/', controller.getTrails)
@@ -34,3 +33,6 @@ utilities.newHikeRules(),
 utilities.checkID(),
 utilities.checkData,
 controller.updateTrail)
+
+
+module.exports = router;
