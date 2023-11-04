@@ -1,6 +1,5 @@
 const express = require('express');
 const router = new express.Router();
-// const trails = 
 
 
 // req.isAuthenticated is provided from the auth router
