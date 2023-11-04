@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
     res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-router.get('/trails', require('./trails'))
+// route to get trails
+// router.get('/trails/', require('./trails'))
 
 
 
