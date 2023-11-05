@@ -16,101 +16,101 @@ gearController.getAllGear =  async function(req, res) {
   }
 }
 
-gearController.getOneTrail = async function(req, res){
+gearController.getOneGear = async function(req, res){
   try{
-    let trailID = req.params._id;
+    let gearID = req.params._id;
     // retrives all info for specified id 
-    const one = await model.getOneTrail(trailID);
+    const one = await model.getOneGear(gearID);
     if(one){
-      return res.status(201).json({message: "Successfully retrieved one trail", data: one});
+      return res.status(201).json({message: "Successfully retrieved one piece of gear", data: one});
     } else{
-      throw new Error("Could not get Trail with that ID")
+      throw new Error("Could not get a piece of gear with that ID")
     }
   } catch (error){
-    res.status(500).json(error.message || 'Some error occurred while retrieving the trail.');
+    res.status(500).json(error.message || 'Some error occurred while retrieving that piece of gear.');
   }
 }
 
-gearController.addTrail = async function(req, res){
+gearController.addGear = async function(req, res){
     /*    
-        #swagger.parameters['trail'] = {
+        #swagger.parameters['gear'] = {
         in: 'body',
-        description: 'Insert a new Trail',
+        description: 'Insert a new piece if gear',
         required: true,
         type: 'string',
         format: 'json',
         schema: {
-            $name: 'New Trail Name',
-            $location: 'Location',
-            $distance: 'Distance',
-            $elevationGain: 'Net Elevation Gain',
-            $elevationLoss: 'Net Elevation Loss',
-            $lastHiked: 'Date Last Hiked',
-            $comments: 'Comments about the hike.'
+            $name: 'Gear Name',
+            $category: 'Gear Type (camping, backpacking, day hiking)',
+            $description: 'Description',
+            $price: 'Price',
+            $condition: 'Condition of Item (new, used, worn, etc)',
+            $weight: 'Weight (oz),
+            $relatedTrails: 'List of trails used on'
           }
         }
       } */
     
-    // allows user to insert new trail using res.body
+    // allows user to insert new gear using res.body
     try {
-      let newTrail = await model.insertTrail(req);
-      if (newTrail) {
+      let newGear = await model.insertGear(req);
+      if (newGear) {
         res.status(201).send(newTrail.insertedId);
       } else {
-        throw new Error('Some error occurred while creating the trail.');
+        throw new Error('Some error occurred while creating the gear data.');
       }
     } catch (error) {
-      res.status(500).json(error.message || 'Some error occurred while creating the trail.');
+      res.status(500).json(error.message || 'Some error occurred while creating the gear data.');
     }
     
 }
 
-// broken
-gearController.deleteTrail = async function(req, res){
+
+gearController.deleteGear = async function(req, res){
   try{
-    const trailID = req.params._id;
+    const gearID = req.params._id;
     // deletes specific trail by ID
-    const deleteResult = await model.removeTrail(trailID);
+    const deleteResult = await model.removeGear(gearID);
     if(deleteResult){
       res.status(200).send(deleteResult)
     } else{
-      throw new Error('Some error occurred while deleting trail.')
+      throw new Error('Some error occurred while deleting piece of gear.')
     }
   } catch (error){
-    res.status(500).json(error.message || 'Some error occurred while deleting trail.')
+    res.status(500).json(error.message || 'Some error occurred while deleting piece of gear.')
   }
 }
 
-gearController.updateTrail = async function(req, res){
+gearController.updateGear = async function(req, res){
     /* #swagger.parameters['_id'] = {
         in: 'path',
-        description: 'Select and update a specific contact',
+        description: 'Select and update a specific piece of gear',
         required: true,
         type: 'string',
         format: 'hex'
     }
-    #swagger.parameters['trail'] = {
+    #swagger.parameters['gear'] = {
         in: 'body',
-        description: 'Updated trail data',
+        description: 'Updated gear data',
         required: true,
         type: 'json',
         schema: {
-            $name: 'New Trail Name',
-            $location: 'Location',
-            $distance: 'Distance',
-            $elevationGain: 'Net Elevation Gain',
-            $elevationLoss: 'Net Elevation Loss',
-            $lastHiked: 'Date Last Hiked',
-            $comments: 'Comments about the hike.'
-        }
+            $name: 'Gear Name',
+            $category: 'Gear Type (camping, backpacking, day hiking)',
+            $description: 'Description',
+            $price: 'Price',
+            $condition: 'Condition of Item (new, used, worn, etc)',
+            $weight: 'Weight (oz),
+            $relatedTrails: 'List of trails used on'
+          }
     }*/    
    
     // allows user to insert new trail using res.body
     try{
-      let trailID = req.params._id;
-      let updatedTrail = await model.updateTrail(trailID, req)
-      if (updatedTrail) {
-          res.status(204).send(updatedTrail.insertedId);
+      let gearID = req.params._id;
+      let updatedGear = await model.updateGear(gearID, req)
+      if (updatedGear) {
+          res.status(204).send(updatedGear.insertedId);
         } else {
           res.status(500).json(res.error || 'Some error occurred while updating the trail.');
         }
@@ -118,9 +118,5 @@ gearController.updateTrail = async function(req, res){
       res.status(500).json(error.message || 'Some error occurred while updating trail.')
     }
 }
-gearController.testPrivate = function(req, res) {
-  res.send('Private');
-}
-
 
 module.exports = gearController;

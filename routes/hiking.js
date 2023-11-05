@@ -9,10 +9,20 @@ const gearController = require('../controller/gearController.js')
 * ROUTES FOR GEAR COLLECTION
 *
 ****************/ 
+// get all gear
+router.get('/gear', gearController.getAllGear)
 
-router.get('/all-gear', gearController.getAllGear)
+// get one piece of gear
+router.get('/gear/:_id', gearController.getOneGear)
 
+// route to add a new trail to the db
+router.post('/gear',gearController.addGear);
 
+// route to delete a trail by an id
+router.delete('/:_id', gearController.deleteGear)
+
+// route to update db
+router.put('/:_id', gearController.updateGear)
 
 
 

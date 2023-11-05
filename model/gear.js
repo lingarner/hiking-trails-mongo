@@ -32,7 +32,7 @@ try {
 }
 
 // returns the trail associated with the id passed in
-async function getOneTrail(id){
+async function getOneGear(id){
     const client = new MongoClient(uri);
     console.log(id)
     
@@ -40,7 +40,7 @@ async function getOneTrail(id){
     await client.connect();
     
     const database = client.db('hiking');
-    const collection = database.collection('trails');
+    const collection = database.collection('gear');
     const query = { _id: new ObjectId(id) };
     const contact = await collection.findOne(query);
     
@@ -54,8 +54,8 @@ async function getOneTrail(id){
 }
 
 // allows user to add a new trail
-async function insertTrail(req) {
-    console.log('in insertTrail');
+async function insertGear(req) {
+    console.log('in insertGear');
     console.log(req);
 
     const client = new MongoClient(uri);
@@ -65,17 +65,17 @@ try {
     await client.connect();
 
     const database = client.db('hiking');
-    const collection = database.collection('trails');
+    const collection = database.collection('gear');
 
     
     const dataInput = {
     name: req.body.name,
-    location: req.body.location,
-    distance: req.body.distance,
-    elevationGain: req.body.elevationGain,
-    elevationLoss: req.body.elevationLoss,
-    lastHiked: req.body.lastHiked,
-    comments: req.body.comments
+    category: req.body.category,
+    description: req.body.description,
+    price: req.body.price,
+    condition: req.body.condition,
+    weight: req.body.weight,
+    relatedTrails: req.body.relatedTrails
     };
     
     const cursor = await collection.insertOne(await dataInput);
@@ -90,7 +90,7 @@ try {
 }
 }
 
-async function removeTrail(id){
+async function removeGear(id){
 console.log(id)
 const client = new MongoClient(uri);
 
@@ -98,7 +98,7 @@ try {
     await client.connect();
     
     const database = client.db('hiking');
-    const collection = database.collection('trails');
+    const collection = database.collection('gear');
 
     const filter = { _id: new ObjectId(id) };
 
@@ -115,24 +115,24 @@ try {
 
 }
 
-async function updateTrail(id, req){
+async function updateGear(id, req){
 const client = new MongoClient(uri);
 
 try {
     await client.connect();
     
     const database = client.db('hiking');
-    const collection = database.collection('trails');
+    const collection = database.collection('gear');
 
     const filter = { _id: new ObjectId(id) };
     const update = {
         name: req.body.name,
-        location: req.body.location,
-        distance: req.body.distance,
-        elevationGain: req.body.elevationGain,
-        elevationLoss: req.body.elevationLoss,
-        lastHiked: req.body.lastHiked,
-        comments: req.body.comments
+        category: req.body.category,
+        description: req.body.description,
+        price: req.body.price,
+        condition: req.body.condition,
+        weight: req.body.weight,
+        relatedTrails: req.body.relatedTrails
     
     }
     const contact = await collection.replaceOne(filter, update);
@@ -144,4 +144,4 @@ try {
     await client.close()
 }
 }
-module.exports = {getAllGear}
+module.exports = {getAllGear, getOneGear, insertGear, removeGear, updateGear}
