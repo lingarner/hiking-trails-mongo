@@ -32,7 +32,7 @@ app.use(auth(config));
 app.use(cors())
 app.use(bodyParser.json())
 app.use('/', require('./routes/index.js') )
-app.use('/trails', require('./routes/trails.js') )
+app.use('/hiking', require('./routes/hiking.js'))
 app.use('/api-docs', checkAuth, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 

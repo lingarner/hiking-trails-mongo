@@ -2,9 +2,27 @@ const express = require('express');
 const router = new express.Router();
 const utilities = require('../utilities/validation.js')
 const controller = require('../controller/controller.js');
+const gearController = require('../controller/gearController.js')
+
+/***************
+*
+* ROUTES FOR GEAR COLLECTION
+*
+****************/ 
+
+router.get('/all-gear', gearController.getAllGear)
 
 
-// go to hiking routes
+
+
+
+/***************
+*
+* ROUTES FOR TRAILS COLLECTION
+*
+****************/ 
+
+
 // route to get all trails
 router.get('/', controller.getTrails)
 

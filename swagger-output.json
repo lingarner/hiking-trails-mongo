@@ -5,12 +5,25 @@
     "description": "Description",
     "version": "1.0.0"
   },
-  "host": "hiking-trails.onrender.com/trails",
+  "host": "hiking-trails.onrender.com/hiking",
   "basePath": "/",
   "schemes": [
     "https"
   ],
   "paths": {
+    "/all-gear": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/": {
       "get": {
         "description": "",
