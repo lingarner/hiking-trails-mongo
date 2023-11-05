@@ -44,6 +44,48 @@ validate.newHikeRules = () => {
     ]
   }
 
+
+// validation for gear collection
+  validate.newGearRules = () => {
+    return [
+      body("name")
+        .isString()
+        .isLength({ min: 1 })
+        .withMessage("Error in name."),
+  
+      body("category")
+        .isString()
+        .isLength({ min: 1 })
+        .withMessage("Error in category."),
+
+      body("description")
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Error in description."),
+
+  
+      body("price")
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Error in price"),
+
+      body("condition")
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Error in condition."),
+
+    body("weight")
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Error in weight."),
+
+    body("relatedTrails")
+        .isString()
+        .isLength({min: 1})
+        .withMessage("Error in relatedTrails."),
+    ]
+  }
+
 // check if the id in params is
   validate.checkID = () => {
     return [
@@ -65,7 +107,7 @@ validate.checkDataInsert = async (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     } else {
-        res.status(201).json({ message: "Trail added", data: req.params._id });
+        res.status(201).json({ message: " data added", data: req.params._id });
     }
     
     next();

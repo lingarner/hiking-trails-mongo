@@ -13,16 +13,29 @@ const gearController = require('../controller/gearController.js')
 router.get('/gear', gearController.getAllGear)
 
 // get one piece of gear
-router.get('/gear/:_id', gearController.getOneGear)
+router.get('/gear/:_id', 
+utilities.checkID(),
+utilities.checkData,
+gearController.getOneGear)
 
 // route to add a new trail to the db
-router.post('/gear',gearController.addGear);
+router.post('/gear',
+utilities.newGearRules(),
+utilities.checkDataInsert,
+gearController.addGear);
 
 // route to delete a trail by an id
-router.delete('/gear/:_id', gearController.deleteGear)
+router.delete('/gear/:_id', 
+utilities.checkID(),
+utilities.checkData,
+gearController.deleteGear)
 
 // route to update db
-router.put('/gear/:_id', gearController.updateGear)
+router.put('/gear/:_id',
+utilities.newGearRules(),
+utilities.checkID(),
+utilities.checkData,
+gearController.updateGear)
 
 
 
