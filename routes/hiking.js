@@ -19,10 +19,10 @@ router.get('/gear/:_id', gearController.getOneGear)
 router.post('/gear',gearController.addGear);
 
 // route to delete a trail by an id
-router.delete('/:_id', gearController.deleteGear)
+router.delete('/gear/:_id', gearController.deleteGear)
 
 // route to update db
-router.put('/:_id', gearController.updateGear)
+router.put('/gear/:_id', gearController.updateGear)
 
 
 

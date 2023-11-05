@@ -5,7 +5,6 @@ gearController.getAllGear =  async function(req, res) {
   try{
     // gets all the trails and info from db
     const gearList = await model.getAllGear();
-    console.log("controller " + gearList)
     if(gearList){
       res.status(200).send(gearList)
     }else{
@@ -55,7 +54,7 @@ gearController.addGear = async function(req, res){
     try {
       let newGear = await model.insertGear(req);
       if (newGear) {
-        res.status(201).send(newTrail.insertedId);
+        res.status(201).send(newGear.insertedId);
       } else {
         throw new Error('Some error occurred while creating the gear data.');
       }
