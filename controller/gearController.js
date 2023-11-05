@@ -30,25 +30,23 @@ gearController.getOneGear = async function(req, res){
   }
 }
 
+
 gearController.addGear = async function(req, res){
-    /*    
-        #swagger.parameters['gear'] = {
-        in: 'body',
-        description: 'Insert a new piece if gear',
-        required: true,
-        type: 'string',
-        format: 'json',
-        schema: {
-            $name: 'Gear Name',
-            $category: 'Gear Type (camping, backpacking, day hiking)',
-            $description: 'Description',
-            $price: 'Price',
-            $condition: 'Condition of Item (new, used, worn, etc)',
-            $weight: 'Weight (oz),
-            $relatedTrails: 'List of trails used on'
-          }
-        }
-      } */
+    /* #swagger.parameters['gear'] = {
+    in: 'body',
+    description: 'Insert a new piece of gear',
+    required: true,
+    type: 'object',
+    schema: {
+        $name: 'Gear Name',
+        $category: 'Gear Type (camping, backpacking, day hiking)',
+        $description: 'Description',
+        $price: 'Price',
+        $condition: 'Condition of Item (new, used, worn, etc)',
+        $weight: 'Weight (oz)',
+        $relatedTrails: 'List of trails used on'
+      }
+} */
     
     // allows user to insert new gear using res.body
     try {
@@ -81,29 +79,22 @@ gearController.deleteGear = async function(req, res){
 }
 
 gearController.updateGear = async function(req, res){
-    /* #swagger.parameters['_id'] = {
-        in: 'path',
-        description: 'Select and update a specific piece of gear',
-        required: true,
-        type: 'string',
-        format: 'hex'
+/* #swagger.parameters['gear'] = {
+    in: 'body',
+    description: 'Updated gear data',
+    required: true,
+    type: 'object',
+    schema: {
+        $name: 'Gear Name',
+        $category: 'Gear Type (camping, backpacking, day hiking)',
+        $description: 'Description',
+        $price: 'Price',
+        $condition: 'Condition of Item (new, used, worn, etc)',
+        $weight: 'Weight (oz)',
+        $relatedTrails: 'List of trails used on'
     }
-    #swagger.parameters['gear'] = {
-        in: 'body',
-        description: 'Updated gear data',
-        required: true,
-        type: 'json',
-        schema: {
-            $name: 'Gear Name',
-            $category: 'Gear Type (camping, backpacking, day hiking)',
-            $description: 'Description',
-            $price: 'Price',
-            $condition: 'Condition of Item (new, used, worn, etc)',
-            $weight: 'Weight (oz),
-            $relatedTrails: 'List of trails used on'
-          }
-    }*/    
-   
+} */   
+
     // allows user to insert new trail using res.body
     try{
       let gearID = req.params._id;

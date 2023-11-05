@@ -25,9 +25,59 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "gear",
+            "in": "body",
+            "description": "Insert a new piece of gear",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Gear Name"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Gear Type (camping, backpacking, day hiking)"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Description"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "Price"
+                },
+                "condition": {
+                  "type": "string",
+                  "example": "Condition of Item (new, used, worn, etc)"
+                },
+                "weight": {
+                  "type": "string",
+                  "example": "Weight (oz)"
+                },
+                "relatedTrails": {
+                  "type": "string",
+                  "example": "List of trails used on"
+                }
+              },
+              "required": [
+                "name",
+                "category",
+                "description",
+                "price",
+                "condition",
+                "weight",
+                "relatedTrails"
+              ]
+            }
+          }
+        ],
         "responses": {
-          "204": {
-            "description": "No Content"
+          "201": {
+            "description": "Created"
           },
           "500": {
             "description": "Internal Server Error"
@@ -81,14 +131,63 @@
             "name": "_id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "description": "Select and update a specific piece of gear",
-            "format": "hex"
+            "type": "string"
+          },
+          {
+            "name": "gear",
+            "in": "body",
+            "description": "Updated gear data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Gear Name"
+                },
+                "category": {
+                  "type": "string",
+                  "example": "Gear Type (camping, backpacking, day hiking)"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Description"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "Price"
+                },
+                "condition": {
+                  "type": "string",
+                  "example": "Condition of Item (new, used, worn, etc)"
+                },
+                "weight": {
+                  "type": "string",
+                  "example": "Weight (oz)"
+                },
+                "relatedTrails": {
+                  "type": "string",
+                  "example": "List of trails used on"
+                }
+              },
+              "required": [
+                "name",
+                "category",
+                "description",
+                "price",
+                "condition",
+                "weight",
+                "relatedTrails"
+              ]
+            }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
